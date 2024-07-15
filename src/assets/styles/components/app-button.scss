@@ -1,0 +1,226 @@
+@import "../abstracts/mixins";
+@import "../abstracts/variables";
+
+.a-btn {
+  $trans: 0.15s;
+  transition: color $trans linear, background-color $trans linear,
+    transform $trans ease-out;
+  cursor: pointer;
+  user-select: none;
+  border: 0;
+  background-color: var(--background);
+  color: var(--color);
+  font-family: inherit;
+  position: relative;
+  text-align: center;
+  border: 1px solid var(--border-color);
+
+  animation: pulse-purple-medium-sm 2s infinite;
+  animation-duration: 3.5s;
+  animation-timing-function: ease;
+  animation-delay: 0s;
+  animation-iteration-count: infinite;
+  animation-direction: normal;
+  animation-fill-mode: none;
+  animation-play-state: running;
+  animation-name: pulse-purple-medium-sm;
+
+  > * {
+    vertical-align: middle;
+  }
+  @include has-hover {
+    &:hover {
+      background-color: var(--background-hover);
+      color: var(--color-hover);
+    }
+  }
+  &:active {
+    background-color: var(--background-active);
+    color: var(--color-active);
+    transform: scale(0.94);
+  }
+  &:before {
+    transition: opacity $trans linear;
+    display: block;
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    pointer-events: none;
+    box-shadow: 0 0 0 4px var(--background);
+    opacity: 0;
+    border-radius: inherit;
+  }
+  &:focus {
+    &:before {
+      opacity: 0.4;
+    }
+  }
+  &--nf:focus:before {
+    opacity: 0;
+  }
+  @each $height in (30, 40, 45, 50, 55, 60) {
+    &--hg-#{$height} {
+      height: #{$height}px;
+      line-height: #{$height}px;
+    }
+  }
+  @each $radius in (10, 28, 30, 50, 100) {
+    &--rd-#{$radius} {
+      border-radius: #{$radius}px;
+    }
+  }
+  @each $sidesPadding in (0, 5, 10, 15, 20, 25, 30, 50) {
+    &--sd-#{$sidesPadding} {
+      padding: 0 #{$sidesPadding}px;
+    }
+  }
+  @each $fontSize in (14, 18) {
+    &--fn-#{$fontSize} {
+      font-size: #{$fontSize}px;
+    }
+  }
+  @each $weight in (600) {
+    &--wg-#{$weight} {
+      font-weight: #{$weight};
+    }
+  }
+  &--wd {
+    width: var(--wd);
+  }
+  @each $theme, $bg, $bg-h, $bg-a, $cl, $cl-h, $cl-a,
+    $br-c
+      in (
+        (
+          "main",
+          $color-main,
+          lighten($color-main, 5%),
+          darken($color-main, 5%),
+          white,
+          white,
+          white,
+          inherit
+        ),
+        (
+          "white",
+          white,
+          lighten(white, 5%),
+          darken(white, 5%),
+          #5b81e5,
+          #5b81e5,
+          #5b81e5,
+          #fff
+        ),
+        (
+          "secondary",
+          $color-secondary,
+          lighten($color-secondary, 5%),
+          darken($color-secondary, 5%),
+          #fff,
+          #fff,
+          #fff
+        ),
+        (
+          "transparent",
+          transparent,
+          rgba($color-main, 0.1),
+          rgba($color-main, 0.15),
+          inherit,
+          inherit,
+          inherit,
+          $border-color
+        ),
+        ("cyan", #e2c9fc, #e2c9fc, #e2c9fc, #130024, #130024, #130024),
+        ("green", #b1ff9d, #b1ff9d, #b1ff9d, #130024, #130024, #130024),
+        ("red", #f7bae8, #f7bae8, #f7bae8, #660448, #660448, #660448),
+        ("black", #3247b0, #3247b0, #3247b0, #fff, #fff, #fff),
+        (
+          "blue",
+          #b9ceff,
+          #b9ceff,
+          #b9ceff,
+          #000c1f,
+          #000c1f,
+          #000c1f,
+          transparent
+        )
+      )
+  {
+    &--th-#{$theme} {
+      --background: #{$bg};
+      --background-hover: #{$bg-h};
+      --background-active: #{$bg-a};
+      --color: #{$cl};
+      --color-hover: #{$cl-h};
+      --color-active: #{$cl-a};
+      --border-color: #{$br-c};
+    }
+  }
+  &--shadow-default {
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+  }
+  &--shadow-medium {
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+  }
+  &--line {
+    background: transparent;
+    --color: var(--background);
+    &:after {
+      transition: border #{$trans} linear;
+      display: block;
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      border-radius: inherit;
+      border: 1px solid var(--background);
+    }
+    @include has-hover {
+      &:hover {
+        &:after {
+          border: 1px solid var(--background-hover);
+        }
+      }
+    }
+    &:active:after {
+      border: 1px solid var(--background-active);
+    }
+  }
+
+  &--fl {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  &[disabled] {
+    opacity: 0.55;
+    cursor: not-allowed;
+    &:before {
+      display: none;
+    }
+    &:active {
+      transform: none;
+    }
+  }
+
+  &--th-main {
+    background: $color-main;
+  }
+
+  &--th-secondary {
+    background: linear-gradient(278.92deg, #00d06c -7.77%, #a6ffdf 158.52%);
+  }
+}
+@keyframes pulse-purple-medium-sm {
+  0% {
+    box-shadow: 0 0 0 0 var(--background);
+  }
+  100%,
+  30% {
+    box-shadow: 0 0 0 15px transparent;
+  }
+}
