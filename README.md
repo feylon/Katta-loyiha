@@ -1,24 +1,23 @@
-# yuksalish-maktabi
+# Yuksalish-maktabi sayti (Ishlab chiquvchi Ergashev Jamshid)
 
-## Project setup
+## Loyihani o'rnatish
 ```
 npm install
 ```
 
-### Compiles and hot-reloads for development
+### Loyihani development jarayonida ishga tushirish
 ```
 npm run serve
 ```
 
-### Compiles and minifies for production
+### Loyihani production jarayoniga chiqarish
 ```
 npm run build
 ```
 
-### Lints and fixes files
-```
-npm run lint
-```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+### GItHUbdagi manzildan yuklab olish 
+
+```
+git clone https://github.com/feylon/Katta-loyiha.git
+```
